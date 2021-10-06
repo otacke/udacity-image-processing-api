@@ -28,7 +28,7 @@ export default class File {
     }
 
     // Build appropriate path
-    const filePath =
+    const filePath: string =
       params.width && params.height
         ? path.resolve(
             File.imagesThumbPath,
@@ -50,7 +50,7 @@ export default class File {
    * @param {string} [filename=''] Filename (without file extension).
    * @return {boolean} True if image is available, else false.
    */
-  static async isImageAvailable(filename = ''): Promise<boolean> {
+  static async isImageAvailable(filename: string = ''): Promise<boolean> {
     if (!filename) {
       return false; // Fail early
     }
@@ -65,7 +65,7 @@ export default class File {
   static async getAvailableImageNames(): Promise<string[]> {
     try {
       return (await fs.readdir(File.imagesFullPath)).map(
-        (filename: string) => filename.split('.')[0]
+        (filename: string): string => filename.split('.')[0]
       ); // Cut extension
     } catch {
       return [];
@@ -86,7 +86,7 @@ export default class File {
     }
 
     // Set appropriate path
-    const filePath = path.resolve(
+    const filePath: string = path.resolve(
       File.imagesThumbPath,
       `${params.filename}-${params.width}x${params.height}.jpg`
     );
@@ -102,7 +102,7 @@ export default class File {
   /**
    * Create thumb path.
    */
-  static async createThumbPath():Promise<void> {
+  static async createThumbPath(): Promise<void> {
     try {
       await fs.access(File.imagesThumbPath);
       // Path already available
@@ -124,11 +124,11 @@ export default class File {
       return null; // Nothing to do
     }
 
-    const filePathFull = path.resolve(
+    const filePathFull: string = path.resolve(
       File.imagesFullPath,
       `${params.filename}.jpg`
     );
-    const filePathThumb = path.resolve(
+    const filePathThumb: string = path.resolve(
       File.imagesThumbPath,
       `${params.filename}-${params.width}x${params.height}.jpg`
     );

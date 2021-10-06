@@ -2,9 +2,9 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import File from './../file';
 
-describe('Test image processing via sharp', () => {
-  it('raises an error (invalid width value)', async () => {
-    const error = await File.createThumb({
+describe('Test image processing via sharp', (): void => {
+  it('raises an error (invalid width value)', async (): Promise<void> => {
+    const error: null | string = await File.createThumb({
       filename: 'foo',
       width: '-100',
       height: '500'
@@ -12,8 +12,8 @@ describe('Test image processing via sharp', () => {
     expect(error).not.toBeNull();
   });
 
-  it('raises an error (filename does not exist)', async () => {
-    const error = await File.createThumb({
+  it('raises an error (filename does not exist)', async (): Promise<void> => {
+    const error: null | string = await File.createThumb({
       filename: 'foo',
       width: '100',
       height: '500'
@@ -22,10 +22,10 @@ describe('Test image processing via sharp', () => {
   });
 
   // Note: Could also fail because of directory permissions
-  it('succeeds to write resized thumb file (existing file, valid size values)', async () => {
+  it('succeeds to write resized thumb file (existing file, valid size values)', async (): Promise<void> => {
     await File.createThumb({ filename: 'fjord', width: '99', height: '99' });
 
-    const resizedImagePath = path.resolve(
+    const resizedImagePath: string = path.resolve(
       File.imagesThumbPath,
       `fjord-99x99.jpg`
     );
@@ -43,8 +43,8 @@ describe('Test image processing via sharp', () => {
 });
 
 // Erase test file. Test should not run on productive system to avoid cache loss
-afterAll(async () => {
-  const resizedImagePath = path.resolve(
+afterAll(async (): Promise<void> => {
+  const resizedImagePath: string = path.resolve(
     File.imagesThumbPath,
     'fjord-99x99.jpg'
   );
