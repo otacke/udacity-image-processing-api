@@ -1,6 +1,6 @@
 {
   "name": "image-processing-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Starter project on Udacity",
   "main": "index.ts",
   "scripts": {
