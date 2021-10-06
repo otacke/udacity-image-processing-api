@@ -100,6 +100,18 @@ export default class File {
   }
 
   /**
+   * Create thumb path.
+   */
+  static async createThumbPath():Promise<void> {
+    try {
+      await fs.access(File.imagesThumbPath);
+      // Path already available
+    } catch {
+      fs.mkdir(File.imagesThumbPath);
+    }
+  }
+
+  /**
    * Create thumb file.
    * @param {ImageQuery} params Parameters.
    * @param {string} [params.filename] Filename.
